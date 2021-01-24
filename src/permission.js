@@ -29,6 +29,7 @@ router.beforeEach(async(to, from, next) => {
       // determine whether the user has obtained his permission roles through getInfo
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
       if (hasRoles) {
+        await store.dispatch('user/GetBtnPermission', to.meta.menuId)
         next()
       } else {
         try {

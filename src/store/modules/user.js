@@ -1,6 +1,8 @@
 import { login, logout, getInfo, getUserButton, getMenuPer, getPrinciple } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter, constantRoutes, asyncRoutes } from '@/router'
+import store from '@/store'
+
 /* Layout */
 // import Layout from '@/layout'
 
@@ -41,28 +43,20 @@ const mutations = {
 
 const actions = {
   // 递归获取按钮权限
-  GetBtnPermission({ commit, state }, ids) {
+  GetBtnPermission({ commit, state }, id) {
     return new Promise((resolve, reject) => {
-      if (!ids) {
+      if (!id) {
         resolve()
         return
       }
-      const iterator = function(i) {
-        if (i === ids.length) {
-          resolve()
-          return
-        }
-        // 异步请求，
-        getUserButton(ids[i], sessionStorage.getItem('userId')).then(response => {
-          commit('SET_BTN_PER', { key: ids[i], data: response.data })
-          i++
-          iterator(i)
-        }).catch(err => {
-          console.log(err)
-          resolve()
-        })
-      }
-      iterator(0)
+      // 异步请求，
+      getUserButton(id, sessionStorage.getItem('userId')).then(response => {
+        commit('SET_BTN_PER', { key: id, data: response.data })
+        resolve()
+      }).catch(err => {
+        console.log(err)
+        resolve()
+      })
     })
   },
   GenerateRoutes({ commit, state }) {

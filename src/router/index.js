@@ -202,9 +202,9 @@ export var asyncRoutes = [
         meta: {
           title: '用户管理',
           icon: 'tree',
-          menuId: '4',
+          menuId: '2',
           parentId: '1',
-          permissionTable: ['1542525078604']
+          permissionTable: ['2']
         }
       },
       {
@@ -216,7 +216,7 @@ export var asyncRoutes = [
           icon: 'tree',
           menuId: '3',
           parentId: '1',
-          permissionTable: ['1542525078604']
+          permissionTable: ['2']
         }
       },
       {
@@ -226,9 +226,9 @@ export var asyncRoutes = [
         meta: {
           title: '菜单按钮',
           icon: 'tree',
-          menuId: '2',
+          menuId: '4',
           parentId: '1',
-          permissionTable: ['1542522373047']
+          permissionTable: ['2']
         }
       }
     ]

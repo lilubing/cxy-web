@@ -13,11 +13,11 @@
       </div>
       <!--按钮-->
       <div style="margin-top: 10px;">
-        <el-button plain type="primary" size="small" icon="el-icon-search" @click="query(true)">查询</el-button>
+        <el-button v-permission="{id: '2', key: 'sysUserSelect'}" plain type="primary" size="small" icon="el-icon-search" @click="query(true)">查询</el-button>
         <el-button plain type="primary" size="small" icon="el-icon-refresh" @click="reset">重置</el-button>
-        <el-button icon="el-icon-plus" type="primary" size="small" @click="add()">添加</el-button>
-        <el-button icon="el-icon-edit" type="primary" size="small" @click="edit()">修改</el-button>
-        <el-button icon="el-icon-delete" type="primary" size="small" @click="deletes()">删除</el-button>
+        <el-button v-permission="{id: '2', key: 'sysUserAdd'}" icon="el-icon-plus" type="primary" size="small" @click="add()">添加</el-button>
+        <el-button v-permission="{id: '2', key: 'sysUserEdit'}" icon="el-icon-edit" type="primary" size="small" @click="edit()">修改</el-button>
+        <el-button v-permission="{id: '2', key: 'sysUserDelete'}" icon="el-icon-delete" type="primary" size="small" @click="deletes()">删除</el-button>
       </div>
       <!--列表-->
       <el-table
@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import permission from '@/directive/permission/index.js' // 权限判断指令
+
 // import SearchFrom from '@/components/SearchForm/Form.vue'
 import { tableFormatDateTime } from '@/utils/myDate'
 // eslint-disable-next-line no-unused-vars
@@ -77,6 +79,7 @@ import { preValid } from '@/utils/validate'
 import moment from 'moment'
 export default {
   name: 'Index',
+  directives: { permission },
   components: {
     AddForm, EditForm
   },
